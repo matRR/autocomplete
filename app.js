@@ -5,7 +5,12 @@ const $search = $('#search');
 const $list   = $('#list');
 
 $search.on('keyup', e => {
- // your code
+ const search = e.target.value;
+ getItems(search)
+  .then(data => {
+    $list.empty();
+    const $items = data.map(item => $('<li />').text(item));
+    $list.append($items);
+  });
 });
 
-getItems('test').then(console.log);

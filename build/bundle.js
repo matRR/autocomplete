@@ -9909,10 +9909,15 @@ var $search = (0, _jquery2.default)('#search');
 var $list = (0, _jquery2.default)('#list');
 
 $search.on('keyup', function (e) {
-  // your code
+  var search = e.target.value;
+  (0, _mockServer2.default)(search).then(function (data) {
+    $list.empty();
+    var $items = data.map(function (item) {
+      return (0, _jquery2.default)('<li />').text(item);
+    });
+    $list.append($items);
+  });
 });
-
-(0, _mockServer2.default)('test').then(console.log);
 
 /***/ },
 
